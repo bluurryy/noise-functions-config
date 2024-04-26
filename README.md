@@ -1,3 +1,3 @@
 # noise-functions-config
 
-Configurable noise generator struct for the [`noise-functions`](https://docs.rs/noise-functions) crate.
+This crate's source code has moved to the [`noise-functions`](https://github.com/bluurryy/noise-functions) repository.
