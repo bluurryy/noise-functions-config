@@ -115,6 +115,7 @@ pub struct Config {
     pub weighted_strength: f32,
     pub seed: i32,
     pub frequency: f32,
+    pub jitter: f32,
 }
 
 impl Sample<2> for Config {
@@ -224,9 +225,9 @@ macro_rules! sampler2 {
     ($self:ident) => {
         match $self.fractal {
             Fractal::None => match $self.noise {
-                Noise::CellDistanceSq => make!($self, CellDistanceSq),
-                Noise::CellDistance => make!($self, CellDistance),
-                Noise::CellValue => make!($self, CellValue),
+                Noise::CellDistanceSq => make!($self, CellDistanceSq.jitter($self.jitter)),
+                Noise::CellDistance => make!($self, CellDistance.jitter($self.jitter)),
+                Noise::CellValue => make!($self, CellValue.jitter($self.jitter)),
                 Noise::OpenSimplex2 => make!($self, OpenSimplex2),
                 Noise::OpenSimplex2s => make!($self, OpenSimplex2s),
                 Noise::Perlin => make!($self, Perlin),
@@ -234,9 +235,9 @@ macro_rules! sampler2 {
                 Noise::Value => make!($self, Value),
             },
             Fractal::Fbm => match $self.noise {
-                Noise::CellDistanceSq => make_fbm!($self, CellDistanceSq),
-                Noise::CellDistance => make_fbm!($self, CellDistance),
-                Noise::CellValue => make_fbm!($self, CellValue),
+                Noise::CellDistanceSq => make_fbm!($self, CellDistanceSq.jitter($self.jitter)),
+                Noise::CellDistance => make_fbm!($self, CellDistance.jitter($self.jitter)),
+                Noise::CellValue => make_fbm!($self, CellValue.jitter($self.jitter)),
                 Noise::OpenSimplex2 => make_fbm!($self, OpenSimplex2),
                 Noise::OpenSimplex2s => make_fbm!($self, OpenSimplex2s),
                 Noise::Perlin => make_fbm!($self, Perlin),
@@ -244,9 +245,9 @@ macro_rules! sampler2 {
                 Noise::Value => make_fbm!($self, Value),
             },
             Fractal::Ridged => match $self.noise {
-                Noise::CellDistanceSq => make_ridged!($self, CellDistanceSq),
-                Noise::CellDistance => make_ridged!($self, CellDistance),
-                Noise::CellValue => make_ridged!($self, CellValue),
+                Noise::CellDistanceSq => make_ridged!($self, CellDistanceSq.jitter($self.jitter)),
+                Noise::CellDistance => make_ridged!($self, CellDistance.jitter($self.jitter)),
+                Noise::CellValue => make_ridged!($self, CellValue.jitter($self.jitter)),
                 Noise::OpenSimplex2 => make_ridged!($self, OpenSimplex2),
                 Noise::OpenSimplex2s => make_ridged!($self, OpenSimplex2s),
                 Noise::Perlin => make_ridged!($self, Perlin),
@@ -261,9 +262,9 @@ macro_rules! sampler3 {
     ($self:ident) => {
         match $self.fractal {
             Fractal::None => match $self.noise {
-                Noise::CellDistanceSq => make!($self, CellDistanceSq),
-                Noise::CellDistance => make!($self, CellDistance),
-                Noise::CellValue => make!($self, CellValue),
+                Noise::CellDistanceSq => make!($self, CellDistanceSq.jitter($self.jitter)),
+                Noise::CellDistance => make!($self, CellDistance.jitter($self.jitter)),
+                Noise::CellValue => make!($self, CellValue.jitter($self.jitter)),
                 Noise::OpenSimplex2 => match $self.improve {
                     Improve::None => make!($self, OpenSimplex2),
                     Improve::Default => make!($self, OpenSimplex2, Improve3),
@@ -281,9 +282,9 @@ macro_rules! sampler3 {
                 Noise::Value => make!($self, Value),
             },
             Fractal::Fbm => match $self.noise {
-                Noise::CellDistanceSq => make_fbm!($self, CellDistanceSq),
-                Noise::CellDistance => make_fbm!($self, CellDistance),
-                Noise::CellValue => make_fbm!($self, CellValue),
+                Noise::CellDistanceSq => make_fbm!($self, CellDistanceSq.jitter($self.jitter)),
+                Noise::CellDistance => make_fbm!($self, CellDistance.jitter($self.jitter)),
+                Noise::CellValue => make_fbm!($self, CellValue.jitter($self.jitter)),
                 Noise::OpenSimplex2 => match $self.improve {
                     Improve::None => make_fbm!($self, OpenSimplex2),
                     Improve::Default => make_fbm!($self, OpenSimplex2, Improve3),
@@ -301,9 +302,9 @@ macro_rules! sampler3 {
                 Noise::Value => make_fbm!($self, Value),
             },
             Fractal::Ridged => match $self.noise {
-                Noise::CellDistanceSq => make_ridged!($self, CellDistanceSq),
-                Noise::CellDistance => make_ridged!($self, CellDistance),
-                Noise::CellValue => make_ridged!($self, CellValue),
+                Noise::CellDistanceSq => make_ridged!($self, CellDistanceSq.jitter($self.jitter)),
+                Noise::CellDistance => make_ridged!($self, CellDistance.jitter($self.jitter)),
+                Noise::CellValue => make_ridged!($self, CellValue.jitter($self.jitter)),
                 Noise::OpenSimplex2 => match $self.improve {
                     Improve::None => make_ridged!($self, OpenSimplex2),
                     Improve::Default => make_ridged!($self, OpenSimplex2, Improve3),
